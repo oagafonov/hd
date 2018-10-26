@@ -1,6 +1,7 @@
 ﻿using HD.Exceptions;
+using HD.Operations;
 
-namespace HD.Model.IssueStates
+namespace HD.IssueStates
 {
     public class WorkState : IssueState
     {
@@ -8,12 +9,7 @@ namespace HD.Model.IssueStates
         {
         }
 
-        public override void Close()
-        {
-            throw new InvalidStateOperationException("Закрыть сразу из работы Вы издеваетесь?");
-        }
-
-        public override void Done()
+        protected override void ProcessDone()
         {
             if (string.IsNullOrEmpty(Issue.PerformerMessage))
             {
@@ -23,15 +19,12 @@ namespace HD.Model.IssueStates
             Issue.SetState(Issue.DoneState);
         }
 
-        public override void Reject()
+        protected override void ProcessReject()
         {
             Issue.SetState(Issue.RejectState);
         }
 
-        public override void Work()
-        {
-            throw new InvalidStateOperationException("итак в работе!");
-        }
+        public override IOperationAvailablity OperationAvailablity { get; } = new WorkIssueOperationAvailability();
 
         public override string ToString()
         {

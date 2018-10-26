@@ -1,6 +1,4 @@
-﻿using HD.Model;
-
-namespace HD.Commands
+﻿namespace HD.Commands
 {
     public class WorkCommand : Command<Issue>
     {

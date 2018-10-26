@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HD.Exceptions;
-using HD.Model;
 
 namespace HD.Client
 {
@@ -58,35 +57,50 @@ namespace HD.Client
         {
             while (true)
             {
-                Console.WriteLine("Enter issue operations: 1 - In process, 2 - Reject, 3 - Done, 4 - Close, 0 - exit");
+                var operations = BuildOperations(issue);
+                var operationText = "Enter issue operations: 0 - exit, ";
+
+                foreach (var operation in operations)
+                {
+                    operationText += $"{operation.Value.Item1}, ";
+                }
+
+                Console.WriteLine(operationText);
+
                 var command = Console.ReadKey();
                 Console.WriteLine();
+
                 try
                 {
-                    switch (command.Key)
+                    if (command.Key == ConsoleKey.D0)
+                        return;
+                    if (operations.ContainsKey(command.Key))
                     {
-                        case ConsoleKey.D0:
-                            return;
-                        case ConsoleKey.D1:
-                            issue.Work();
-                            break;
-                        case ConsoleKey.D2:
-                            issue.Work();
-                            break;
-                        case ConsoleKey.D3:
-                            issue.Done();
-                            break;
-                        case ConsoleKey.D4:
-                            issue.Close();
-                            break;
+                        operations[command.Key].Item2();
+                        PrintIssue(issue);
                     }
-                    PrintIssue(issue);
                 }
                 catch (InvalidStateOperationException e)
                 {
                     Console.WriteLine($"Error when process operation: {e.Message}");
                 }
             }
+        }
+
+        private static Dictionary<ConsoleKey, Tuple<string, Action>> BuildOperations(Issue issue)
+        {
+            var operations = new Dictionary<ConsoleKey, Tuple<string, Action>>();
+
+            if (issue.State.OperationAvailablity.CanWork)
+                operations.Add(ConsoleKey.D1, new Tuple<string, Action>("1 - In process", issue.Work));
+            if (issue.State.OperationAvailablity.CanReject)
+                operations.Add(ConsoleKey.D2, new Tuple<string, Action>("2 - Reject", issue.Reject));
+            if (issue.State.OperationAvailablity.CanDone)
+                operations.Add(ConsoleKey.D3, new Tuple<string, Action>("3 - Done", issue.Done));
+            if (issue.State.OperationAvailablity.CanClose)
+                operations.Add(ConsoleKey.D4, new Tuple<string, Action>("4 - Close", issue.Close));
+
+            return operations;
         }
 
         private static void CreateNewIssues()

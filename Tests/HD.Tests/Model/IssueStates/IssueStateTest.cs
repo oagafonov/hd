@@ -1,4 +1,4 @@
-﻿using HD.Model;
+﻿using HD.IssueStates;
 using NUnit.Framework;
 
 namespace HD.Tests.Model.IssueStates

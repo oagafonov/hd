@@ -1,4 +1,6 @@
-﻿namespace HD.Model
+﻿using HD.Operations;
+
+namespace HD.IssueStates
 {
     public interface IIssueState
     {
@@ -21,6 +23,8 @@
         /// Выполнена
         /// </summary>
         void Done();
+
+        IOperationAvailablity OperationAvailablity { get; }
 
     }
 }

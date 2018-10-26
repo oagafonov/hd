@@ -1,7 +1,7 @@
 ﻿using HD.Commands;
-using HD.Model.IssueStates;
+using HD.IssueStates;
 
-namespace HD.Model
+namespace HD
 {
     public class Issue
     {
