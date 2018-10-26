@@ -1,5 +1,4 @@
 ﻿using HD.Commands;
-using HD.Model;
 using NUnit.Framework;
 
 namespace HD.Tests.Commands

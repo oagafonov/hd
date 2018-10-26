@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C271C94D-CEA4-4010-A188-A73DA9355A52}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HD</RootNamespace>
-    <AssemblyName>HD</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ProjectGuid>{DDBBC692-C7E6-449C-8003-D53634977F8E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HD.Client</RootNamespace>
+    <AssemblyName>HD.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,27 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\CommandManager.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\WorkCommand.cs" />
-    <Compile Include="Exceptions\InvalidStateOperationException.cs" />
-    <Compile Include="IssueStates\DoneState.cs" />
-    <Compile Include="IssueStates\IIssueState.cs" />
-    <Compile Include="Issue.cs" />
-    <Compile Include="IssueStates\IssueState.cs" />
-    <Compile Include="IssueStates\CloseState.cs" />
-    <Compile Include="IssueStates\NewState.cs" />
-    <Compile Include="Operations\IOperationAvailablity.cs" />
-    <Compile Include="IssueStates\RejectState.cs" />
-    <Compile Include="IssueStates\WorkState.cs" />
-    <Compile Include="Operations\AllDenyOperationAvailability.cs" />
-    <Compile Include="Operations\RejectIssueOperationAvailability.cs" />
-    <Compile Include="Operations\DoneIssueOperationAvailability.cs" />
-    <Compile Include="Operations\CloseIssueOperationAvailability.cs" />
-    <Compile Include="Operations\WorkIssueOperationAvailability.cs" />
-    <Compile Include="Operations\NewIssueOperationAvailability.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\HD\HD.csproj">
+      <Project>{c271c94d-cea4-4010-a188-a73da9355a52}</Project>
+      <Name>HD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
