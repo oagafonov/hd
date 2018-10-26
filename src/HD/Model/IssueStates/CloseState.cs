@@ -29,5 +29,9 @@ namespace HD.Model.IssueStates
             throw new InvalidStateOperationException("уже закрыта, стопПэ!");
         }
 
+        public override string ToString()
+        {
+            return "Closed";
+        }
     }
 }

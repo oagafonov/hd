@@ -27,5 +27,10 @@ namespace HD.Model.IssueStates
         {
             throw new InvalidStateOperationException("ЭЭ ну ты че?!");
         }
+
+        public override string ToString()
+        {
+            return "Done";
+        }
     }
 }

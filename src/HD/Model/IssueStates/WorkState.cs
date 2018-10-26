@@ -32,5 +32,10 @@ namespace HD.Model.IssueStates
         {
             throw new InvalidStateOperationException("итак в работе!");
         }
+
+        public override string ToString()
+        {
+            return "In process";
+        }
     }
 }

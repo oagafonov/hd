@@ -27,5 +27,10 @@ namespace HD.Model.IssueStates
         {
             Issue.SetState(Issue.WorkState);
         }
+
+        public override string ToString()
+        {
+            return "Rejected";
+        }
     }
 }
